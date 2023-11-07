@@ -15,34 +15,34 @@ public class 백준11724_연결_요소_개수 {
      */
 
     static boolean visited[];
-    static ArrayList<Integer>[] A;
+    static ArrayList<Integer>[] arrayLists;
+
     public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+        visited = new boolean[N+1];
+        arrayLists = new ArrayList[N+1];
 
-        int n = Integer.parseInt(stringTokenizer.nextToken());
-        int m = Integer.parseInt((stringTokenizer.nextToken()));
-        visited = new boolean[n+1];
-
-        A = new ArrayList[n+1];
-        for (int i = 1; i < n+1; i++) {
-            A[i] = new ArrayList<>();
+        for (int i = 1; i < N+1; i++) {
+           arrayLists[i] = new ArrayList<>();
         }
 
-        for (int i = 0; i < m ; i++) {
-            stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-            int start = Integer.parseInt(stringTokenizer.nextToken());
-            int end = Integer.parseInt((stringTokenizer.nextToken()));
-            A[start].add(end);
-            A[end].add(start);
+        for (int i = 1; i < M+1; i++) {
+            st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            arrayLists[start].add(end);
+            arrayLists[end].add(start);
         }
+
 
         int count = 0;
-
-        for (int i = 1; i < n+1; i++) {
+        for (int i = 1; i < N+1; i++) {
             if(!visited[i]){
-                count ++;
+                count++;
                 DFS(i);
             }
         }
@@ -52,15 +52,15 @@ public class 백준11724_연결_요소_개수 {
     }
 
     private static void DFS(final int v) {
-        if(visited[v]){
+
+        if(visited[v])
             return;
-        }
 
         visited[v] = true;
-        for(int i : A[v]){
-            if(!visited[i]){
+        for (int i : arrayLists[v]) {
+            if(!visited[i])
                 DFS(i);
-            }
         }
+
     }
 }
