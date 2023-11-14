@@ -20,6 +20,7 @@ public class SpringbootInPracticeApplication {
 //        SpringApplication 직접생성, reactive dependency를 설정해야 정상부팅된다.
         SpringApplication springApplication = new SpringApplication(SpringbootInPracticeApplication.class);
         springApplication.setWebApplicationType(WebApplicationType.SERVLET);
+        springApplication.addListeners(new ApplicationStartingEventListener());
         springApplication.run(args);
     }
 
