@@ -38,7 +38,7 @@
 소개 : 기본 개념부터 실무 베스트 프렉티스, GraalVm, GraphQl, R소켓 등 최신 기술까지  
 목표 : 스프링 부트 지식 재정비 및 최신기술 경험
 
-- [자바ORM표준 JPA 프로그래밍]()  
+- [자바ORM표준 JPA 프로그래밍](https://github.com/Overjump-Hurdle/hoding/issues/3#issue-1994051468)  
 소개 : 기초원리부터 스프링 데이터를 활용한 실전 자바 웹 애플리케이션 개발까지  
 목표 : JPA 지식 재정비
 
