@@ -61,11 +61,11 @@ public class 백준14889_스타트와_링크 {
         for (int i = 0; i < N / 2 + 1; i++) {
             for (int j = i + 1; j < N / 2; j++) {
                 int teamA_i = teamA.get(i);
-                int teamA_j = teamA.get(i);
+                int teamA_j = teamA.get(j);
                 teamAScore += score[teamA_i][teamA_j] + score[teamA_j][teamA_i];
 
                 int teamB_i = teamB.get(i);
-                int teamB_j = teamB.get(i);
+                int teamB_j = teamB.get(j);
                 teamBScore += score[teamB_i][teamB_j] + score[teamB_j][teamB_i];
             }
         }
