@@ -14,53 +14,50 @@ public class 백준11724_연결_요소_개수 {
      * (1 ≤ u, v ≤ N, u ≠ v) 같은 간선은 한 번만 주어진다.
      */
 
+    static ArrayList<Integer> list[];
     static boolean visited[];
-    static ArrayList<Integer>[] arrayLists;
-
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
 
-        visited = new boolean[N+1];
-        arrayLists = new ArrayList[N+1];
-
-        for (int i = 1; i < N+1; i++) {
-           arrayLists[i] = new ArrayList<>();
+        int vertexCount = Integer.parseInt(st.nextToken());
+        int edgeCount = Integer.parseInt(st.nextToken());
+        visited = new boolean[vertexCount +1];
+        list = new ArrayList[vertexCount+1];
+        for (int i = 0; i < vertexCount+1; i++) {
+            list[i] = new ArrayList<>();
         }
 
-        for (int i = 1; i < M+1; i++) {
+        for (int i = 0; i < edgeCount; i++) {
             st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
-            arrayLists[start].add(end);
-            arrayLists[end].add(start);
+            int s = Integer.parseInt(st.nextToken());
+            int e = Integer.parseInt(st.nextToken());
+            list[s].add(e);
+            list[e].add(s);
         }
 
 
-        int count = 0;
-        for (int i = 1; i < N+1; i++) {
-            if(!visited[i]){
-                count++;
+        int anwser = 0;
+        for (int i = 1; i < vertexCount+1; i++) {
+            if(!visited[i]) {
+                anwser++;
                 DFS(i);
             }
         }
 
-        System.out.println(count);
-
+        System.out.println(anwser);
     }
 
-    private static void DFS(final int v) {
-
-        if(visited[v])
-            return;
+    private static void DFS(int v) {
+//        if(visited[v])
+//            return;
 
         visited[v] = true;
-        for (int i : arrayLists[v]) {
-            if(!visited[i])
+        for (int i : list[v]) {
+            if(!visited[i]) {
                 DFS(i);
+            }
         }
-
     }
 }
