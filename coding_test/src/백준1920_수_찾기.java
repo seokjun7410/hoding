@@ -1,41 +1,43 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.lang.reflect.Array;
+import java.nio.Buffer;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class 백준1920_수_찾기 {
     public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-        int N = Integer.parseInt(stringTokenizer.nextToken());
-
-        int[] arr = new int[N];
-        stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+        int arr[] = new int[N];
+        st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            arr[i] = Integer.parseInt(stringTokenizer.nextToken());
+            arr[i] = Integer.parseInt(st.nextToken());
         }
-
-
         Arrays.sort(arr);
 
 
-        stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-        int M = Integer.parseInt(stringTokenizer.nextToken());
-        stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-        for (int i = 0; i < M; i++) {
-            boolean find = false;
-            int target = Integer.parseInt(stringTokenizer.nextToken());
-            int start = 0;
-            int end = arr.length -1;
+        st = new StringTokenizer(br.readLine());
+        int M = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
 
+
+        for (int i = 0; i < M; i++) {
+            int target = Integer.parseInt(st.nextToken());
+            int start = 0;
+            int end = N-1;
+            boolean find = false;
             while(start <= end){
-                int mid_index = (start+end)/2;
-                int mid_value = arr[mid_index];
-                if(mid_value > target){
-                    end = mid_index - 1;
-                }else if (mid_value < target){
-                    start = mid_index +1;
+                int midIndex = (start+end)/2;
+                int midValue = arr[midIndex];
+
+                if(target < midValue){
+                    end = midIndex-1;
+                }else if (midValue < target){
+                    start = midIndex+1;
                 }else {
                     find = true;
                     break;
@@ -46,6 +48,7 @@ public class 백준1920_수_찾기 {
             else
                 System.out.println(0);
         }
+
     }
 
 }
