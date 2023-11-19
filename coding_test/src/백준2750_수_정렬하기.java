@@ -10,17 +10,16 @@ public class 백준2750_수_정렬하기 {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
+        int N = scanner.nextInt();
 
-
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
+        int arr[] = new int[N];
+        for (int i = 0; i < N; i++) {
             arr[i] = scanner.nextInt();
         }
 
         Arrays.sort(arr);
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < N; i++) {
             System.out.println(arr[i]);
         }
     }
