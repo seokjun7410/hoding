@@ -1,8 +1,12 @@
 package com.example.springboot_in_practice;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.Properties;
 
@@ -13,7 +17,10 @@ import java.util.Properties;
  *  - @ComponentScan : 스프링 빈으로 관리된다.
  */
 @SpringBootApplication
+@EnableConfigurationProperties(AppProperties.class) //@ConfigurationProperties 스캔, @ConfigurationPropertiesScan -> 패키지 하위 자동스캔
 public class SpringbootInPracticeApplication {
+
+    private static final Logger log = LoggerFactory.getLogger(SpringbootInPracticeApplication.class);
 
     public static void main(String[] args)
     {
@@ -29,7 +36,14 @@ public class SpringbootInPracticeApplication {
         properties.setProperty("spring.config.on-not-found","ignore"); //설정파일이 존재하지 않아도 예외를 발생시키지 않는다.
         springApplication.setDefaultProperties(properties);
 
-        springApplication.run(args);
+        ConfigurableApplicationContext context = springApplication.run(args);
+
+        //customProperty 접근
+        AppService appService = context.getBean(AppService.class);
+        AppProperties appProperties = appService.getAppProperties();
+
+        log.info(appProperties.toString());
+
     }
 
 }
