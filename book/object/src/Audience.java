@@ -14,13 +14,16 @@ public class Audience {
     }
 
     public Long buy(final Ticket ticket) {
-        if(bag.hasInvitation()){
-            bag.setTicket(ticket);
-            return 0L;
-        }else {
-            bag.setTicket(ticket);
-            bag.minusAmount(ticket.getFee());
-            return ticket.getFee();
-        }
+        //bag은 수동적인 존재가 아니다. bag에게 자율성을 보장해주자
+        //중요한것은 bag의 세부메소드의 의존하지 않게 하는 것이다.
+        return bag.hold(ticket);
+//        if(bag.hasInvitation()){
+//            bag.setTicket(ticket);
+//            return 0L;
+//        }else {
+//            bag.setTicket(ticket);
+//            bag.minusAmount(ticket.getFee());
+//            return ticket.getFee();
+//        }
     }
 }
