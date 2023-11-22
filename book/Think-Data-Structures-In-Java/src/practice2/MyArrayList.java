@@ -117,8 +117,15 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public int indexOf(Object target) {
+    public int indexOf(Object target) { //http://bit.ly/2KF3aF1
         // TODO: FILL THIS IN!
+        for (int i = 0; i < size; i++) {
+            if(array[i] ==null && target == null)
+                return i;
+            if(array[i].equals(target)){
+                return i;
+            }
+        }
         return -1;
     }
 
