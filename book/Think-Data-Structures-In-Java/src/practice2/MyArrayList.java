@@ -208,9 +208,14 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
-    public T set(int index, T element) {
+    public T set(int index, T element) { // http://bit.ly/2KFLglv
         // TODO: FILL THIS IN!
-        return null;
+        if(size <= index || index < 0)
+            throw new IndexOutOfBoundsException();
+
+        T preData = array[index];
+        array[index] = element;
+        return preData;
     }
 
     @Override
