@@ -5,7 +5,6 @@ import movie_reservation.domain.discount_condition.PeriodCondition;
 import movie_reservation.domain.discount_condition.SequenceCondition;
 import movie_reservation.domain.discount_policy.AmountDiscountPolicy;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.DayOfWeek;
 import java.time.LocalDate;

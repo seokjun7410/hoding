@@ -2,7 +2,6 @@ package movie_reservation.domain.discount_condition;
 
 import movie_reservation.domain.Screening;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class MorningCondition implements DiscountCondition {

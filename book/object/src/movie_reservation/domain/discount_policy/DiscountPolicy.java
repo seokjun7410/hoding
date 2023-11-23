@@ -4,7 +4,6 @@ import movie_reservation.domain.Money;
 import movie_reservation.domain.Screening;
 import movie_reservation.domain.discount_condition.DiscountCondition;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
