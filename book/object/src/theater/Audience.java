@@ -1,3 +1,5 @@
+package theater;
+
 /**
  * @Class 관람객
  * @Dpenceny {@link Bag}
