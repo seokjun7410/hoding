@@ -1,4 +1,4 @@
-package com.example.springboot_in_practice;
+package com.example.springboot_in_practice.part1;
 
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

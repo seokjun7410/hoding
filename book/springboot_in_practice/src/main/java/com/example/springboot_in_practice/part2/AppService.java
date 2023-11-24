@@ -1,4 +1,4 @@
-package com.example.springboot_in_practice;
+package com.example.springboot_in_practice.part2;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
