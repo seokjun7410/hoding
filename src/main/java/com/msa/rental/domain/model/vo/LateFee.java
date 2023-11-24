@@ -24,7 +24,7 @@ public class LateFee {
     }
 
     private boolean canRemove(final long point) {
-        return this.point > point;
+        return this.point >= point;
     }
 
     public static LateFee sample(){

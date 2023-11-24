@@ -3,7 +3,7 @@ package com.msa.rental.domain.model.vo;
 import lombok.*;
 
 @Getter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @ToString
 public class Item {
     private Integer no;

@@ -6,6 +6,7 @@ import lombok.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.msa.rental.domain.model.vo.RentAvailableStatus.RENT_AVAILABLE;
@@ -123,7 +124,8 @@ public class RentalCard {
     private void calculateLateFee(final RentalItem rentalItem, final LocalDate returnDate) {
         if(returnDate.isAfter(rentalItem.getReturnDate())) { //늦게 반납했을 경우
             long point = (long) Period.between(rentalItem.getReturnDate(), returnDate).getDays() * OVERDUE_POINT_PER_DAY;
-            this.lateFee.addPoint(point);
+            LateFee addPoint = this.lateFee.addPoint(point);
+            this.lateFee = addPoint;
         }
     }
 
@@ -151,14 +153,7 @@ public class RentalCard {
     /** ------ 예외 -> cutomExcpetion 생략 ------ **/
     /** ------ samp for test method ------ **/
     public static RentalCard sample() {
-        return new RentalCard(
-                RentalCardNo.sample(),
-                IDName.sample(),
-                RentAvailableStatus.RENT_AVAILABLE,
-                LateFee.createLateFee(),
-                List.of(RentalItem.sample()),
-                List.of(ReturnItem.sample())
-        );
+        return createRentalCard(IDName.sample());
     }
 
     public static void main(String[] args) {
