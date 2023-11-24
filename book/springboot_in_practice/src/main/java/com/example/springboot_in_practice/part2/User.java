@@ -1,4 +1,4 @@
-package com.example.springboot_in_practice;
+package com.example.springboot_in_practice.part2;
 
 public class User {
     private String userName;

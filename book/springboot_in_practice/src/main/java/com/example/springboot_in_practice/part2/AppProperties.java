@@ -1,8 +1,7 @@
-package com.example.springboot_in_practice;
+package com.example.springboot_in_practice.part2;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.bind.ConstructorBinding;
 
 import java.util.List;
 import java.util.StringJoiner;

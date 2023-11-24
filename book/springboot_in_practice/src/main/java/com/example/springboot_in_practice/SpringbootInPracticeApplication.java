@@ -1,5 +1,9 @@
 package com.example.springboot_in_practice;
 
+import com.example.springboot_in_practice.part1.ApplicationStartingEventListener;
+import com.example.springboot_in_practice.part2.AppProperties;
+import com.example.springboot_in_practice.part2.AppService;
+import com.example.springboot_in_practice.part2.User;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
