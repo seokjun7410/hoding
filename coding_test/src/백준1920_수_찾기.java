@@ -18,8 +18,6 @@ public class 백준1920_수_찾기 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(arr);
-
-
         st = new StringTokenizer(br.readLine());
         int M = Integer.parseInt(st.nextToken());
         st = new StringTokenizer(br.readLine());
