@@ -1,3 +1,4 @@
+package theater;
 
 /**
  * @class 티켓
