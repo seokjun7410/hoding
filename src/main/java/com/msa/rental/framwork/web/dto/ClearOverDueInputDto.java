@@ -1,4 +1,4 @@
-package com.msa.rental.framwork.web;
+package com.msa.rental.framwork.web.dto;
 
 public record ClearOverDueInputDto(
         String userId,

@@ -1,4 +1,4 @@
-package com.msa.rental.framwork.web;
+package com.msa.rental.framwork.web.dto;
 
 import com.msa.rental.domain.model.RentalCard;
 
