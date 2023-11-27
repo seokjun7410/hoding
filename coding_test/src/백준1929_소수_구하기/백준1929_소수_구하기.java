@@ -1,3 +1,5 @@
+package 백준1929_소수_구하기;
+
 import java.io.IOException;
 import java.util.Scanner;
 
