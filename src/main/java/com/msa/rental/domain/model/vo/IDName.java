@@ -8,7 +8,7 @@ import lombok.ToString;
 import javax.persistence.Id;
 
 @Getter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @ToString
 public class IDName {
     private String id;
