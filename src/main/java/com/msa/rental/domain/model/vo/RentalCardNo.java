@@ -2,18 +2,19 @@ package com.msa.rental.domain.model.vo;
 
 //rentalCard 의 식별자가 되는 VO
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
+import javax.persistence.Embeddable;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
-public class RentalCardNo {
+@Embeddable
+public class RentalCardNo implements Serializable {
     private String no;
 
     public static RentalCardNo createRentalCardNo(){

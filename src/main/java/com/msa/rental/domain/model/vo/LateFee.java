@@ -2,10 +2,14 @@ package com.msa.rental.domain.model.vo;
 
 import lombok.*;
 
+import javax.persistence.Embeddable;
+
 //포인트 관리하는 비즈니스 로직
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
+@Embeddable
 public class LateFee {
     private long point;
 

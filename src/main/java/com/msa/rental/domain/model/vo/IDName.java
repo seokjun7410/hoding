@@ -1,15 +1,15 @@
 package com.msa.rental.domain.model.vo;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Id;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
+@Embeddable
 public class IDName {
     private String id;
     private String name;

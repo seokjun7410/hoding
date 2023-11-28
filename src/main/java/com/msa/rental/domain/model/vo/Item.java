@@ -2,9 +2,13 @@ package com.msa.rental.domain.model.vo;
 
 import lombok.*;
 
+import javax.persistence.Embeddable;
+
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
+@Embeddable
 public class Item {
     private Integer no;
     private String title;

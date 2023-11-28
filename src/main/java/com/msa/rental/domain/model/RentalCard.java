@@ -3,6 +3,7 @@ package com.msa.rental.domain.model;
 import com.msa.rental.domain.model.vo.*;
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -16,14 +17,21 @@ import static com.msa.rental.domain.model.vo.RentAvailableStatus.RENT_UNAVAILABL
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
+@Entity
 public class RentalCard {
     private final int OVERDUE_POINT_PER_DAY = 10; //연체 1일당 10포인트가 부여된다.
 
+    @EmbeddedId
     private RentalCardNo rentalCardNo;
+    @Embedded
     private IDName member;
     private RentAvailableStatus rentAvailableStatus;
+    @Embedded
     private LateFee lateFee;
+
+    @ElementCollection
     private List<RentalItem> rentalItemList;
+    @ElementCollection
     private List<ReturnItem> returnItemList;
 
 

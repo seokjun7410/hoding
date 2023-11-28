@@ -4,6 +4,8 @@ package com.msa.rental.domain.model;
 import com.msa.rental.domain.model.vo.Item;
 import lombok.*;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import java.time.LocalDate;
 
 @Getter
@@ -11,7 +13,9 @@ import java.time.LocalDate;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @Builder
+@Embeddable
 public class RentalItem {
+    @Embedded
     private Item item;
     private LocalDate rentDate;
     private boolean overdued; //연체
