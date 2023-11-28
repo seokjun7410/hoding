@@ -81,8 +81,16 @@ public class MyArrayListTest {
         assertThat(mylist.get(0), is(6));
 
         mylist.add(5, 7);
+
         //System.out.println(Arrays.toString(mal.toArray()));
         assertThat(mylist.get(5), is(Integer.valueOf(7)));
+    }
+
+    private void print() {
+        for (int i = 0; i < mylist.size(); i++) {
+            System.out.print(mylist.get(i).toString()+"");
+        }
+        System.out.println();
     }
 
     /**
@@ -151,6 +159,7 @@ public class MyArrayListTest {
     @Test
     public void testIndexOfNull() {
         assertThat(mylist.indexOf(null), is(-1));
+        print();
         mylist.add(null);
         assertThat(mylist.indexOf(null), is(3));
     }
