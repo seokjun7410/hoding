@@ -1,3 +1,5 @@
+package 백준1717_집합의_표현;
+
 import java.io.IOException;
 import java.util.Scanner;
 
