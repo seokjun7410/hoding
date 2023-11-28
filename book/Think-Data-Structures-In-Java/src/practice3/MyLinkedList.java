@@ -86,22 +86,29 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public void add(int index, E element) {
         //TODO: FILL THIS IN!
+//        if (index == 0) {
+//            Node node = new Node(element);
+//            node.next = head;
+//            head = node;
+//            size++;
+//        } else if (this.size == index) {
+//            add(element);
+//            System.out.println(" add");
+//        } else {
+//            Node preNode = getNode(index - 1);
+//            Node nextNode = getNode(index);
+//            Node newNode = new Node(element);
+//            preNode.next = newNode;
+//            newNode.next = nextNode;
+//            size++;
+//        }
         if (index == 0) {
-            Node node = new Node(element);
-            node.next = head;
-            head = node;
-            size++;
-        } else if (this.size == index) {
-            add(element);
-            System.out.println(" add");
+            head = new Node(element, head);
         } else {
-            Node preNode = getNode(index - 1);
-            Node nextNode = getNode(index);
-            Node newNode = new Node(element);
-            preNode.next = newNode;
-            newNode.next = nextNode;
-            size++;
+            Node node = getNode(index-1);
+            node.next = new Node(element, node.next);
         }
+        size++;
     }
 
     @Override
