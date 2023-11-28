@@ -1,3 +1,5 @@
+package 백준2252_줄세우기;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
