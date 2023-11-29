@@ -14,7 +14,7 @@ public record ReturnItemOutputDto(
         ReturnItemOutputDto rentItemOutputDTO = new ReturnItemOutputDto(
         returnItem.getRentalItem().getItem().getNo(),
         returnItem.getRentalItem().getItem().getTitle(),
-        returnItem.getReturnDate()
+        returnItem.getReturnedDate()
         );
         return rentItemOutputDTO;
     }

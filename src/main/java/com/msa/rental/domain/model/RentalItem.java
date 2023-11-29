@@ -4,6 +4,8 @@ package com.msa.rental.domain.model;
 import com.msa.rental.domain.model.vo.Item;
 import lombok.*;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import java.time.LocalDate;
@@ -14,6 +16,7 @@ import java.time.LocalDate;
 @ToString
 @Builder
 @Embeddable
+@Access(AccessType.FIELD)
 public class RentalItem {
     @Embedded
     private Item item;

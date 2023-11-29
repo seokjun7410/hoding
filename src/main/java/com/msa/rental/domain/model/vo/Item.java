@@ -2,6 +2,8 @@ package com.msa.rental.domain.model.vo;
 
 import lombok.*;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 
 @Getter
@@ -9,6 +11,7 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 @Embeddable
+@Access(AccessType.FIELD)
 public class Item {
     private Integer no;
     private String title;

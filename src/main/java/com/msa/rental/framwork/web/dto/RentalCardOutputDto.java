@@ -1,9 +1,8 @@
 package com.msa.rental.framwork.web.dto;
 
 import com.msa.rental.domain.model.RentalCard;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor(force = true)
+
 public record RentalCardOutputDto(
         String rentalCardId,
         String memberId,
