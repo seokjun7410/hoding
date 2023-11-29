@@ -1,3 +1,5 @@
+package 백준_1516_게임개발;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
