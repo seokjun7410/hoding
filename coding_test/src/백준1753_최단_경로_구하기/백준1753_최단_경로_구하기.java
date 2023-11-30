@@ -1,3 +1,5 @@
+package 백준1753_최단_경로_구하기;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,6 +34,9 @@ public class 백준1753_최단_경로_구하기 {
             int w = Integer.parseInt(st.nextToken());
             list[u].add(new Edge(v, w));
         }
+
+
+
         q.add(new Edge(K, 0)); // K를 시작점으로 설정
         distance[K] = 0;
         while (!q.isEmpty()) {
