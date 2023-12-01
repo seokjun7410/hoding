@@ -59,8 +59,8 @@
 목표 : 쿼리 최적화에 대한 모범사례와 기술 노하우 습득
 
 - [Real Mysql 8.0 - 1](https://github.com/seokjun7410/hoding/issues/39#issue-2020211097)  
-소개 : 개발자와 DBA를 위한 MYSQL 실전 가이드 
-목표 : Mysql 내부 아키텍처 및 작동원리 습득
+소개 : 개발자와 DBA를 위한 MYSQL 실전 가이드  
+목표 : Mysql 내부 아키텍처 및 작동원리 습득  
 
 # **STDUY**   
 - 오픈소스 분석
