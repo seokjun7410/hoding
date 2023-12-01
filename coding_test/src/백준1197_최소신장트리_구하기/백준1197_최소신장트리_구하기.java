@@ -1,3 +1,5 @@
+package 백준1197_최소신장트리_구하기;
+
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.PriorityQueue;
