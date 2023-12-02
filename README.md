@@ -34,7 +34,7 @@
 - 회고블로그
 
 # **BOOk-REVIEW**   
-- [SpringBoot in Practice - 실전 스프링 부트](https://github.com/seokjun7410/hoding/issues/1#issue-1990096423)
+- [SpringBoot in Practice - 실전 스프링 부트](https://github.com/seokjun7410/hoding/issues/1#issue-1990096423)  
 소개 : 기본 개념부터 실무 베스트 프렉티스, GraalVm, GraphQl, R소켓 등 최신 기술까지  
 목표 : 스프링 부트 지식 재정비 및 최신기술 경험
 
@@ -56,7 +56,11 @@
 
 - [Mysql을 더 빠르게, 성능 최적화 선택과 집중](https://github.com/seokjun7410/hoding/issues/10#issue-1996085196)  
 소개 : 쿼리 응답 시간을 줄이는 가장 최적의 방법과 기술들  
-목표 : 쿼리 최적화에 대한 모범사례와 기술 노하우 습득    
+목표 : 쿼리 최적화에 대한 모범사례와 기술 노하우 습득
+
+- [Real Mysql 8.0 - 1](https://github.com/seokjun7410/hoding/issues/39#issue-2020211097)  
+소개 : 개발자와 DBA를 위한 MYSQL 실전 가이드  
+목표 : Mysql 내부 아키텍처 및 작동원리 습득  
 
 # **STDUY**   
 - 오픈소스 분석
