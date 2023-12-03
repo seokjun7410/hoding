@@ -4,10 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
@@ -15,6 +12,8 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 @ToString
 public class User {
     @Id
@@ -28,11 +27,16 @@ public class User {
     @CreationTimestamp
     private Timestamp createDate;
 
+    public static User create(String username, String email, String password){
+        return User.builder()
+                .username(username)
+                .email(email)
+                .password(password)
+                .build();
+    }
+
     public void setRole(final String role) {
         this.role = role;
     }
 
-    public void setPassword(final String encodePassword) {
-        this.password = encodePassword;
-    }
 }

@@ -30,10 +30,11 @@ public class PrincipalDetail implements UserDetails {
         role.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
+                System.out.println("user = " + user.getRole());
                 return user.getRole();
             }
         });
-        return null;
+        return role;
     }
 
     @Override
