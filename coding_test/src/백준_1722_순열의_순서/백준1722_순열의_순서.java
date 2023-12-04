@@ -1,3 +1,5 @@
+package 백준_1722_순열의_순서;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
