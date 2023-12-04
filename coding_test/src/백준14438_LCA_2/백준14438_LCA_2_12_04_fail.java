@@ -1,10 +1,14 @@
+package 백준14438_LCA_2;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
-public class 백준14438_LCA_2 {
-
+public class 백준14438_LCA_2_12_04_fail {
     static ArrayList<Integer>[] list;
     static int[] depth;
     static int kmax;
@@ -62,15 +66,11 @@ public class 백준14438_LCA_2 {
             b = temp;
         }
 
-        //깊이 맞추기 => 빠르게
         for (int k = kmax; k >= 0; k--) {
-            if (Math.pow(2, k) <= depth[b] - depth[a]) {
-                if (depth[a] <= depth[parent[k][b]])
+            if(Math.pow(2,k) <= depth[b] - depth[a])
                     b = parent[k][b];
-            }
         }
 
-        //동시에 올라가면서 조상을 찾기 => 빠르게
         for (int k = kmax; k >= 0 && a != b; k--) {
             if (parent[k][a] != parent[k][b]) {
                 a = parent[k][a];
