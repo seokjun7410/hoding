@@ -62,4 +62,5 @@
 소개 : 개발자와 DBA를 위한 MYSQL 실전 가이드  
 목표 : Mysql 내부 아키텍처 및 작동원리 습득  
 
-
+# tech
+[redis](https://github.com/seokjun7410/hoding/issues/46#issue-2023689672)
