@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
 import java.time.LocalDate;
 
 @Getter
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Access(AccessType.FIELD)
+@Embeddable
 public class BookDesc {
     private String description;
     private String author;

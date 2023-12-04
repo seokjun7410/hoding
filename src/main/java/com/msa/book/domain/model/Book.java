@@ -3,21 +3,26 @@ package com.msa.book.domain.model;
 import com.msa.book.domain.model.vo.*;
 import lombok.*;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 @Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Access(AccessType.FIELD)
 public class Book {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long no;
     private String title;
+    @Embedded
     private BookDesc desc;
+    @Enumerated(EnumType.STRING)
     private Classfication classfication;
+    @Enumerated(EnumType.STRING)
     private BookStatus bookStatus;
+    @Enumerated(EnumType.STRING)
     private Location location;
 
     /** 입고 처리 **/
