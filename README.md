@@ -62,29 +62,4 @@
 소개 : 개발자와 DBA를 위한 MYSQL 실전 가이드  
 목표 : Mysql 내부 아키텍처 및 작동원리 습득  
 
-# **STDUY**   
-- 오픈소스 분석
-  Pinpoint || Ngrinder 씹고 뜯고 맛보기
 
-- 성능개선
-  대용량 서버 부하 테스트 해결
-
-# **PROJECT**  
-**INFRA** 
- - 도커 기반 CI/CD 배포자동화
-   
-**DATABASE**
- - Mysql 기반 OOO 개발
-   - +Redis 마이그레이션 전환기
-
-**CODE**
- - 객체지향&클린코드 WORST/BEST 리팩토링
-
-**SPRING BATCH**
- - Spring Batch를 이용한 OOO
-
-**SPRING SECURITY**
- - SPRING SECURITY CUSTOM OOO
-
-**VUE.js**
- - Admin SSR 
