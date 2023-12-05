@@ -1,7 +1,8 @@
+package 백준2193_이친수;
+
 import java.util.Scanner;
 
 public class 백준2193_이친수 {
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
