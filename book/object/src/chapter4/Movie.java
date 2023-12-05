@@ -14,6 +14,34 @@ public class Movie {
     private Money discountAmount;
     private double discountPercent;
 
+    //오퍼레이션 생각하기
+    //할인 정책에 따라 영화요금 계산방식이 결정된다.
+    //따라서 할인정책별로 요금을 계산하는 메소드를 구현한다.
+    public Money calculateAmountDiscountedFee(){
+        if(movieType!= MovieType.AMOUNT_DISCOUNT) {
+            throw new RuntimeException();
+        }
+        //생략
+        return Money.ZERO;
+    }
+
+    public Money calculatePercentDiscountedFee(){
+        if(movieType!= MovieType.PERCENT_DISCOUNT) {
+            throw new RuntimeException();
+        }
+        //생략
+        return Money.ZERO;
+    }
+
+    public Money calculateNoneDiscountedFee(){
+        if(movieType!= MovieType.NONE_DISCOUNT) {
+            throw new RuntimeException();
+        }
+        //생략
+        return Money.ZERO;
+    }
+
+
     public void setTitle(final String title) {
         this.title = title;
     }
