@@ -1,3 +1,5 @@
+package 백준_11724_연결요소의개수;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
