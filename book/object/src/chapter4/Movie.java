@@ -3,6 +3,7 @@ package chapter4;
 import movie_reservation.domain.Money;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Movie {
@@ -13,6 +14,22 @@ public class Movie {
     private MovieType movieType;
     private Money discountAmount;
     private double discountPercent;
+
+    //오퍼레이션 생각하기
+    //소유한 List<DiscountCondition>중 가능한 할인이 있는지 확인해야한다.
+    public boolean isDiscountable(LocalDateTime whenScreened, int sequence){
+        for (DiscountCondition discountCondition : discountConditions) {
+            if(discountCondition.getType() == DiscountConditionType.PERIOD){
+                discountCondition.isDiscountable(whenScreened.getDayOfWeek(),whenScreened.toLocalTime());
+                        return true;
+            }else{
+                if(discountCondition.isDiscountable(sequence))
+                    return true;
+            }
+        }
+        return  false;
+    }
+
 
     //오퍼레이션 생각하기
     //할인 정책에 따라 영화요금 계산방식이 결정된다.
