@@ -158,3 +158,117 @@
     - 동등비교(IN 포함)
     - 크다작다 형태(<,>)
     - LIKE 좌측 일치 패턴
+
+## R-Tree Index
+- 공간 인덱스 -> 2차원 데이터를 인덱싱하고 검색하는 목적으로 사용된다.
+- MySQL은 위치기반 서비스를 위한 2차원 데이터를 다루는 방법을 공간확장을 이용해 제공한다.
+#### 공간확장의 3가지 기능
+- 공간데이터를 저장할수 있는 타입
+- 공간 데이터의 검색을 위한 공간인덱스(R-Tree INDEX)
+- 공간 데이터의 연산함수 (거리 또는 포함관계 처리)
+#### 구조 및 특징
+- 도형 타입 Geometry를 지원
+#### R-Tree 알고리즘 이해
+- MBR : Minimum Bounding Rectangle
+  - 도형을 감싸는 최소 크기의 사각형
+- 최상위 BR -> 루트 노드
+- 차상위 BR -> 브랜치 노드
+- 최하위 BR -> 리프 노드
+`즉 R-Tree는 MBR 정보를 이용해 B-Tree 형태로 인덱스를 구축한다. `
+
+#### 기준점 반경 이내의 점들 검색하기
+- ST_contains() 또는 ST_within() 함수를 이용
+- 위 함수는 기본적으로 반경 MBR로 관계 비교를 하기 떄문에 정확한 계산을 위해서는 추가적인 조건이 필요하다. 
+```sql
+ex 
+SELECT * FROM tb_location
+WHERE ST-contains(사각상좌좌표,px)
+AND ST_DISTANCE_SPHER(p,px)<= 5 * 10000 // 5km 
+``` 
+
+## 전문 검색 인덱스
+
+#### B-Tree 한계
+- 실제 컬럼 값이 1MB이어도 InnoDb 기준 3072바이트 까지만 잘라서 인덱스 키로 사용한다
+  - InnoDb의 로우포맷 시스템 변수 값이 DYNAMIC 또는 COMPRESSED 일경우 3072 바이트고 다른 값은 더 작다
+- 좌측 일치 및 전체 일치 검색만 가능하다.
+
+#### 전문(Full-text) 검색
+- 문서의 내용 전체를 인덱스화 해서 특정 키워드를 찾는 방법
+
+#### 어근 분석 알고리즘
+- 과정 1 : 불용어(검색에 가치 없는 단어) 필터링
+- 과정 2 : 어근 분석
+  - MeCap 오픈소스 제공
+  - 한글 특징에 맞춰 완성도를 갖추는 작업은 어렵다.
+#### n-gram 알고리즘
+- 어근 분석 개선
+- 키워드를 검색해내기 위한 인덱싱 알고리즘
+- 글자를 잘라서 인덱싱 함으로 인덱스의 크기가 크다. 
+- 2-gram : 2글자 단위로 중첩해서 키워드를 쪼갠뒤 인덱싱 하는 방식으로 많이 사용된다.
+```
+ex To be or not to be. That is the question
+To -> To
+...
+That -> th ha at
+...
+question -> qu ue es st ti io on
+
+```
+=> 해당 토근들에 대해 불용어를 걸러낸다.
+information_schema,innodb_ft_default_stopword - 불용어 테이블
+불용어를 직접 추가할 수도 무시할 수도 있다.
+```sql
+사용
+SELECT * FROM table
+WHERE MATCH(doc_body) AGAINST('애플' IN BOOLEANMODE) 
+```
+
+## 함수 기반 인덱스
+- 변형된 칼럼에 대해 인덱스를 구축
+
+#### 가상칼럼 이용
+```mysql
+ALTER TABLE user(
+    ADD full_name VARCHAR(30) AS (CONCAT(first_name,' ', last_name)) VIRUTAL
+    ADD INDEX ix_fullname (full_name)
+  )
+
+```
+- 가상 칼럼은 새로운 칼럼을 추가하는 것과 같은 효과(테이블 구조 변경)
+#### 함수 이용
+```mysql
+CREATE TABLE user(
+    ...
+    INDX ix_fullname((CONCAT(frist_name,' ',last_name)))
+    ...
+)
+```
+```mysql
+SELECT * FROM user where CONCAT(first_name,' ',last_name) = 'MUTT LEE'
+```
+- 인덱스에 명시된 표현식을 그대로 사용해야 한다.
+- CONCAT 함수 공백 리터럴 때문에 인덱스를 사용하지 않을 수가 있댜.
+  - 시스템 변수 값을 통일하면 해결된다.
+- 내부적으로 가상칼럼과 구현이 같음으로 둘사이의 성능차이는 없다.
+## 멀티벨류 인덱스
+- 하나의 데이터 레코드가 여러개의 키값을 가질 수 있는 형태
+- JSON 타입을 관리할 때 효율적이다.
+```mysql
+create table user(
+...
+credit_info JSON
+INDEX my_creditscores ((CAST credit_info -> '$.credit.scores' AS UNSIGNED ARRAY))
+)
+```
+```
+INSERT INTO user VALUES (..., '{"credit_scores" : [1,2,3]}')
+```
+```
+SELECT * FROM user WHERE 1 MEMBER OF(credit_info->'$.credit_scores');
+```
+- MEMBER OF()
+- JSON_CONTAINS()
+- JSON_OVERLAPS()
+- 전용 함수를 이용해야 인덱스가 활용된다.
+
