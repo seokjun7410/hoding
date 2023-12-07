@@ -1,3 +1,5 @@
+package 백준1541_잃어버린_괄호;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
