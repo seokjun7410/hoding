@@ -11,36 +11,36 @@ public class 백준1541_잃어버린_괄호_12_07_Success {
         Scanner scanner = new Scanner(System.in);
         char[] charArray = scanner.next().toCharArray();
 
-        StringBuffer sb = new StringBuffer();
-        boolean minus = false;
+        StringBuffer stringBuffer = new StringBuffer();
+        boolean preMinusExist = false;
         int sum = 0;
         Queue<String> queue = new LinkedList<>();
         for (int i = 0; i < charArray.length; i++) {
             char c = charArray[i];
 
             if (c == '-' || c == '+') {
-                queue.add(sb.toString());
-                sb = new StringBuffer();
+                queue.add(stringBuffer.toString());
+                stringBuffer = new StringBuffer();
                 queue.add(String.valueOf(c));
             } else {
-                sb.append(c);
+                stringBuffer.append(c);
             }
 
         }
-        queue.add(sb.toString());
+        queue.add(stringBuffer.toString());
 
         sum += Integer.parseInt(queue.poll());
         while (!queue.isEmpty()) {
-            String poll = queue.poll();
-            int N = Integer.parseInt(queue.poll());
-            if (poll.equals("+"))
-                if (minus) {
-                    sum += N * -1;
+            String operation = queue.poll();
+            int num = Integer.parseInt(queue.poll());
+            if (operation.equals("+"))
+                if (preMinusExist) {
+                    sum -= num ;
                 } else
-                    sum += N;
-            else if (poll.equals("-")) {
-                minus = true;
-                sum += N * -1;
+                    sum += num;
+            else if (operation.equals("-")) {
+                preMinusExist = true;
+                sum -= num;
             }
         }
 
