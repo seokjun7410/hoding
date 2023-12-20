@@ -52,7 +52,7 @@ public class ...{}
 ```java
 //자식
 @Entity
-@DiscriminatorValue(name="M")
+@DiscriminatorValue(name="M") 
 public class ...{}
 ```
 - 장점 : 일반적으로 전략중 조회가 제일 빠르다. (조인이 없다. 쿼리가 단순하다.)
@@ -100,47 +100,47 @@ public class ...{}
 @Entity
 @IdClass(ParentId.class) //별도의 식별자 클래스를 사용한다.
 public class Parent{
-  @Id
-  @Colomn(name = "PARENT_ID1")
-  private String id1; // ParentId.id1 연결
+        @Id 
+        @Colomn(name = "PARENT_ID1") 
+        private String id1; // ParentId.id1 연결
 
-  @Id
-  @Colomn(name = "PARENT_ID2")
-  private String id1; // ParentId.id2 연결
+        @Id
+        @Colomn(name = "PARENT_ID2")
+        private String id1; // ParentId.id2 연결
 }
 ```
 ```java
 //별도의 식별자 클래스
 public class ParentId implements Serializable {
-  private String id1;
-  private String id2;
-
-  //기본생성자
-  //all 생성자.
-  //equest,hashCode override
+        private String id1;
+        private String id2;
+        
+        //기본생성자
+        //all 생성자.
+        //equest,hashCode override
 }
 ```
 ```java
 //자식
 public class Child {
-  @Id
-  private String id;
-
-  @ManyToOne
-  @JoinColumns({
+    @Id
+    private String id;
+    
+    @ManyToOne
+    @JoinColumns({
           @JoinColumn(name = "PARENT_ID1", referencedColumnName = "PARENT_ID1"), //joinColumn 매핑 및 외래키 이름 설정
           @JoinColumn(name = "PARENT_ID2", referencedColumnName = "PARENT_ID2")
-  })
-  private Parent parent;
+    })
+    private Parent parent;
 }
 ```
 
 ```java
     //사용코드 : 부모 id 할당
     Parent p = new Parent();
-            parent.setId("Id1");
-            parent.setId("Id2");
-//persist
+    parent.setId("Id1");
+    parent.setId("Id2");
+    //persist
 ```
 #### @EmbeddedId 사용 : OOP 관점 접근 방식
 //자주 사용하는 어노테이션이라 예제는 생략합니다.
@@ -166,14 +166,14 @@ public class Child {
 ```java
 @entity
 public class Child{
-  @Id
-  private Long id;
-
-  @MapsId // parent 키값만 사용하도록 매핑
-  @OneToOne
-  @JoinColumn(name = "PARENT_ID")
-  private Parent parent;
-
+    @Id
+    private Long id;
+    
+    @MapsId // parent 키값만 사용하도록 매핑
+    @OneToOne
+    @JoinColumn(name = "PARENT_ID")
+    private Parent parent;
+  
 }
 ```
 
@@ -194,7 +194,9 @@ public class Child{
 ## 하나의 엔티티에 여러테이블 매핑하기
 ```
 요약
-비즈니스 적으로 하나에 엔티티로 묶여야 하는 대상은 테이블에서도 묶거나 그렇지 않다면 일대일로 각각을 매핑하는 것이 합리적이라고 생각한다.
+일대일로 풀어서 사용하는 것이 합리적이다.
 해당 기능을 사용하면 조회 최적화가 어렵다
 ```
-`개인생각 : DDD : RDBMS 패러다임 차이를 극복하기 위해서 종종 사용 될 것 같다 `
+`개인생각
+비즈니스 적으로 하나에 엔티티로 묶여야 하는 대상은 테이블에서도 묶거나 그렇지 않다면 일대일로 각각을 매핑하는 것이 합리적이라고 생각한다.
+DDD : RDBMS 패러다임 차이를 극복하기 위해서 종종 사용 될 것 같다 `
