@@ -38,26 +38,26 @@ Date 23.12.12
 ## 필터 라이프사이클
 ```mermaid
 classDiagram
-    init --> service
-    service <--> request
-    service <--> destory
-    service <--> response
-    class init {
-    }
-    class service {
-    }
-    class destory {
-    }
-    class request {
-    }
-    class response {
-    }
-  
+  init --> service
+  service <--> request
+  service <--> destory
+  service <--> response
+  class init {
+  }
+  class service {
+  }
+  class destory {
+  }
+  class request {
+  }
+  class response {
+  }
+
 ```
 
 ## 필터체인
 - 서블릿 컨테이너가 제공하며 필터들을 연쇄적으로 흘러갇도록 만드는 역할
-![스크린샷 2023-12-12 오후 8.53.53.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fc4%2Fdjj8knkd4g38rchhdk2ph7d00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_Oq2EOV%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-12-12%20%EC%98%A4%ED%9B%84%208.53.53.png)
+  ![스크린샷 2023-12-12 오후 8.53.53.png](https://docs.spring.io/spring-security/reference/_images/servlet/architecture/filterchain.png)
 - 출처 : [스프링 공식문서 Spring Security > sevletApplcation > architecture](https://docs.spring.io/spring-security/reference/servlet/architecture.html#servlet-delegatingfilterproxy)
 ## 필터 인터페이스의 doFilter()
 ```java
@@ -76,7 +76,7 @@ public void doFilter(ServletRequest request,ServeltResponse response ,FilterChai
 - 필터 인스턴스는 서블릿 컨테이너 컴포넌트이다. 즉 서블릿 컨테이너가 관리한다.
 - DelegatingFilterProxy는 서블릿 필터이며 서블릿 컨테이너에 등록되고 라이플사이클도 서블릿이 관리한다.
   - delegate 패턴 : 객체가 자신의 기능을 다른객체에 위임하여 기능을 실행하는 패턴
-![스크린샷 2023-12-12 오후 8.53.34.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fc4%2Fdjj8knkd4g38rchhdk2ph7d00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_lHLrxY%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-12-12%20%EC%98%A4%ED%9B%84%208.53.34.png)
+    ![스크린샷 2023-12-12 오후 8.53.34.png](https://docs.spring.io/spring-security/reference/_images/servlet/architecture/filterchainproxy.png)
 - 출처 : [스프링 공식문서 Spring Security > sevletApplcation > architecture](https://docs.spring.io/spring-security/reference/servlet/architecture.html#servlet-delegatingfilterproxy)
 - FilterChainProxy가 위임자가 된다.
 - SecurityFilterChaing
@@ -84,7 +84,7 @@ public void doFilter(ServletRequest request,ServeltResponse response ,FilterChai
   - getFilters() : matchers()가 ture를 반환하면 호출되면서 필터체인의 모든 필터를 거친다.
 
 ## 사용자 인증
-![스크린샷 2023-12-12 오후 8.58.00.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fc4%2Fdjj8knkd4g38rchhdk2ph7d00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_3z1JvK%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-12-12%20%EC%98%A4%ED%9B%84%208.58.00.png)
+![스크린샷 2023-12-12 오후 8.58.00.png](https://docs.spring.io/spring-security/reference/_images/servlet/authentication/architecture/securitycontextholder.png)
 - 출처 : [스프링 공식문서 Spring Security > sevletApplcation > authentication > authentication architecture](https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html#servlet-authentication-securitycontext)
 - SecurityContext : 사용자 이름, 권한 등 식별에 필요한 정보
   - securityContextPersistenceFilter가 관리
@@ -105,23 +105,23 @@ public void doFilter(ServletRequest request,ServeltResponse response ,FilterChai
 - 스프링 시큐리티 중심 클래스
 - 3가지 configuration import
 1. SpringBootWebSecurityConfiguration
-   - 클래스패스에 스프리킹 시큐리티가 있지만 커스텀하지 않았을때 기본인증 SecurityFilterChain Bean을 생성 
+  - 클래스패스에 스프리킹 시큐리티가 있지만 커스텀하지 않았을때 기본인증 SecurityFilterChain Bean을 생성
 2. WebSecurityEnablerConfiguration
-   - @EnableWebSecurity 존재 : 스프링 시큐리티 활성화
-     - @Import webSecuirtyConfiguration : 웹 리소스 보안담당 webSecurity 빈 생성
-     - @Import HttpSecurityConfiguration : HTTP 보안담당 HttpSecuirty 빈 생성
-   - @EnableGlobalAuthentication 존재 : securityFilterChain에 전역적으로 사용되는 AuthenticationManager를 Builder인스턴스를 통해 사용할 수 있게 설정
+  - @EnableWebSecurity 존재 : 스프링 시큐리티 활성화
+    - @Import webSecuirtyConfiguration : 웹 리소스 보안담당 webSecurity 빈 생성
+    - @Import HttpSecurityConfiguration : HTTP 보안담당 HttpSecuirty 빈 생성
+  - @EnableGlobalAuthentication 존재 : securityFilterChain에 전역적으로 사용되는 AuthenticationManager를 Builder인스턴스를 통해 사용할 수 있게 설정
 3. SecurityDataConfiguration
-   - 스프링 시큐리티 - 스프링 데이터 연동에 사용
+  - 스프링 시큐리티 - 스프링 데이터 연동에 사용
 ### 직접 시큐리티 설정 정의하는 법
 - webSecurityConfigurerAdapter 상속 또는 webSecurityConfigurer 구현
 ## userDetailsServiceAutoConfiguration
-- userDetailsService 구현체가 빈으로 등록되어 있지 않으면 InmemoryUserDetailsManager 빈 등록 
+- userDetailsService 구현체가 빈으로 등록되어 있지 않으면 InmemoryUserDetailsManager 빈 등록
   - 기본 계정 제공, 시작로그에 pw 노출
 ## SecurityFilterAutoConfiguration
-  - DelegatingFilterProxyRegistration Bean 생성
-    - DelegatingFilterProxy 필터를 생성하고 서블릿 컨테이너에 등록
-  - SecurityAutoConfiguration 이후에 설정됨
+- DelegatingFilterProxyRegistration Bean 생성
+  - DelegatingFilterProxy 필터를 생성하고 서블릿 컨테이너에 등록
+- SecurityAutoConfiguration 이후에 설정됨
 
 ## 스프링 시큐리티 로그인 페이지 변경하기
 #### webSecurityConfigurerAdapter 상속
@@ -142,14 +142,14 @@ protected void configure(WebSecuirty web)
 ```java
 @override
 protected void configure(AuthenticationManagerBuiler auth){
-    auth.inMemoryAuthentication().paswwwordEncoder(passwordEncoder)
+        auth.inMemoryAuthentication().paswwwordEncoder(passwordEncoder)
         .withUser("user")
         ...
         // id,pw,role 설장
         }
-        
+
 protected void configure(HttpSecuirty http){
-    http ...
+        http ...
         .antMatchars("/~ ").hasRole("ADMIN")
         ...
         .exceptionHandling().accessDeniedHandler(CustomAccessDeniedHandler); //커스텀 예외 핸들러 설정
@@ -168,7 +168,7 @@ CustomAccessDeniedHandler implements AccessDeniedHandler ->인증실패시 예�
 ```java
 @override
 protected void configure(AuthenticationManagerBuiler auth){
-    auth.jdbcAuthentication().dataSource(dataSource)
+        auth.jdbcAuthentication().dataSource(dataSource)
         ...
 ```
 
