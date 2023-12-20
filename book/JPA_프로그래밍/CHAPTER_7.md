@@ -20,8 +20,8 @@
 - 부모 기본키를 자식테이블이 (PK,FK) 사용하는 전략 (식별관계)
 ```mermaid
    classDiagram
-    Parent <|-- Child
-    Child : EXTENDS_ID(PK,FK)
+  Parent <|-- Child
+  Child : EXTENDS_ID(PK,FK)
  ```
 ```java
 // 부모
@@ -37,7 +37,7 @@ public class ...{}
 @PrimaryKeyJoinColumn(name = "BOOK_ID") // 상속받은 기본키 이름 재정의
 public class ...{}
 ```
-- 장점 : 테이블 정규화, 외래키 활용 가능, 저장공간 
+- 장점 : 테이블 정규화, 외래키 활용 가능, 저장공간
 - 단점 : 조회시 조인사용, 비교적 쿼리 복잡, insert query 두번남감.
 
 ### 단일 테이블 전략
@@ -52,7 +52,7 @@ public class ...{}
 ```java
 //자식
 @Entity
-@DiscriminatorValue(name="M") 
+@DiscriminatorValue(name="M")
 public class ...{}
 ```
 - 장점 : 일반적으로 전략중 조회가 제일 빠르다. (조인이 없다. 쿼리가 단순하다.)
@@ -83,12 +83,12 @@ public class ...{}
 
 ## 식별관계 / 비식별 관계
 - 식별관계 : 부모 테이블의 기본키를 내려받아서 자식테이블의 기본키+외래키로 사용하는 관계
-![images_jhp1115_post_08ce18cd-0cd1-43a4-9fdf-ee8b55b78236_image.png](img%2Fimages_jhp1115_post_08ce18cd-0cd1-43a4-9fdf-ee8b55b78236_image.png)
+  ![images_jhp1115_post_08ce18cd-0cd1-43a4-9fdf-ee8b55b78236_image](https://github.com/seokjun7410/hoding/assets/47974623/e0652db7-10ae-41a0-ab0c-df5067317ca1)
 - 비 식별관계 : 부모의 기본키를 자식이 PK,FK로 사용
   - 선택적 : 외래키에 null 허용
-  - 필수적 : 외래키에 null 불가  
+  - 필수적 : 외래키에 null 불가
 
-  ![images_jhp1115_post_351aa6a0-24e6-46ce-814f-9ec97a65405a_image.png](img%2Fimages_jhp1115_post_351aa6a0-24e6-46ce-814f-9ec97a65405a_image.png)
+  ![images_jhp1115_post_351aa6a0-24e6-46ce-814f-9ec97a65405a_image](https://github.com/seokjun7410/hoding/assets/47974623/f46aa4d9-2de6-420f-afc3-4f538f0ca095)
 
 ## 복합키를 사용하는 비식별 관계
 - 별도의 식별자 클래스를 생성해야함
@@ -100,47 +100,47 @@ public class ...{}
 @Entity
 @IdClass(ParentId.class) //별도의 식별자 클래스를 사용한다.
 public class Parent{
-        @Id 
-        @Colomn(name = "PARENT_ID1") 
-        private String id1; // ParentId.id1 연결
+  @Id
+  @Colomn(name = "PARENT_ID1")
+  private String id1; // ParentId.id1 연결
 
-        @Id
-        @Colomn(name = "PARENT_ID2")
-        private String id1; // ParentId.id2 연결
+  @Id
+  @Colomn(name = "PARENT_ID2")
+  private String id1; // ParentId.id2 연결
 }
 ```
 ```java
 //별도의 식별자 클래스
 public class ParentId implements Serializable {
-        private String id1;
-        private String id2;
-        
-        //기본생성자
-        //all 생성자.
-        //equest,hashCode override
+  private String id1;
+  private String id2;
+
+  //기본생성자
+  //all 생성자.
+  //equest,hashCode override
 }
 ```
 ```java
 //자식
 public class Child {
-    @Id
-    private String id;
-    
-    @ManyToOne
-    @JoinColumns({
+  @Id
+  private String id;
+
+  @ManyToOne
+  @JoinColumns({
           @JoinColumn(name = "PARENT_ID1", referencedColumnName = "PARENT_ID1"), //joinColumn 매핑 및 외래키 이름 설정
           @JoinColumn(name = "PARENT_ID2", referencedColumnName = "PARENT_ID2")
-    })
-    private Parent parent;
+  })
+  private Parent parent;
 }
 ```
 
 ```java
     //사용코드 : 부모 id 할당
     Parent p = new Parent();
-    parent.setId("Id1");
-    parent.setId("Id2");
-    //persist
+            parent.setId("Id1");
+            parent.setId("Id2");
+//persist
 ```
 #### @EmbeddedId 사용 : OOP 관점 접근 방식
 //자주 사용하는 어노테이션이라 예제는 생략합니다.
@@ -150,7 +150,7 @@ public class Child {
   - 덧. DB관점에서 동일한 복합키가. 객체로 다뤄지는 java환경에서 레퍼런스 동일성 비교로 같지 않다고 판단될 수 있음
 
 ## 식별/비식별 복합키 관련 추가 레퍼런스
-[Legacy DB의 JPA Entity Mapping (복합키 매핑 편)](https://techblog.woowahan.com/2595/)  
+[Legacy DB의 JPA Entity Mapping (복합키 매핑 편)](https://techblog.woowahan.com/2595/)
 ```
 요약
 이미 식별관계로 DB가 구성되어 있고 복합키가 하나 이상 여러개 있을경우 @EmbeddedId를 사용하면 특정상황에서 객체그래프 탐색이 길어질 수 있음으로
@@ -166,14 +166,14 @@ public class Child {
 ```java
 @entity
 public class Child{
-    @Id
-    private Long id;
-    
-    @MapsId // parent 키값만 사용하도록 매핑
-    @OneToOne
-    @JoinColumn(name = "PARENT_ID")
-    private Parent parent;
-  
+  @Id
+  private Long id;
+
+  @MapsId // parent 키값만 사용하도록 매핑
+  @OneToOne
+  @JoinColumn(name = "PARENT_ID")
+  private Parent parent;
+
 }
 ```
 
