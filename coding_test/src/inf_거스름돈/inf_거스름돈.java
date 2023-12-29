@@ -1,3 +1,5 @@
+package inf_거스름돈;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
