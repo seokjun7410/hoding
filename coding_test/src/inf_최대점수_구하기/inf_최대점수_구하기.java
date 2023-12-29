@@ -1,3 +1,5 @@
+package inf_최대점수_구하기;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
