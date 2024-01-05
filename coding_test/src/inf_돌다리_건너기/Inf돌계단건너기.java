@@ -1,3 +1,5 @@
+package inf_돌다리_건너기;
+
 import java.util.Scanner;
 
 public class Inf돌계단건너기 {
