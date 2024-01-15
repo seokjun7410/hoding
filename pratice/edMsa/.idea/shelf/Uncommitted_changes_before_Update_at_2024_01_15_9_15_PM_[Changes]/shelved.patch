@@ -1,0 +1,389 @@
+Index: ../../coding_test/src/res/input.txt
+===================================================================
+diff --git a/../../coding_test/src/res/input.txt b/../../coding_test/src/res/input.txt
+deleted file mode 100644
+--- a/../../coding_test/src/res/input.txt	(revision 7cceae5a8794bdc2f39207331e0315705c8c0ded)
++++ /dev/null	(revision 7cceae5a8794bdc2f39207331e0315705c8c0ded)
+@@ -1,11 +0,0 @@
+-10
+-123 1
+-2737 1
+-757148 1
+-78466 2
+-32888 2
+-777770 5
+-436659 2
+-431159 7
+-112233 3
+-456789 10
+\ No newline at end of file
+Index: ../../coding_test/src/inf_조합의_경우수.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../coding_test/src/inf_조합의_경우수.java b/../../coding_test/src/inf_조합_경우수/inf_조합의_경우수.java
+rename from ../../coding_test/src/inf_조합의_경우수.java
+rename to ../../coding_test/src/inf_조합_경우수/inf_조합의_경우수.java
+--- a/../../coding_test/src/inf_조합의_경우수.java	(revision 7cceae5a8794bdc2f39207331e0315705c8c0ded)
++++ b/../../coding_test/src/inf_조합_경우수/inf_조합의_경우수.java	(date 1705282274436)
+@@ -1,3 +1,5 @@
++package inf_조합_경우수;
++
+ import java.util.Scanner;
+ 
+ public class inf_조합의_경우수 {
+Index: ../../coding_test/src/inf_미로탐색.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../coding_test/src/inf_미로탐색.java b/../../coding_test/src/inf_미로탐색.java
+new file mode 100644
+--- /dev/null	(date 1704759040621)
++++ b/../../coding_test/src/inf_미로탐색.java	(date 1704759040621)
+@@ -0,0 +1,56 @@
++import java.io.BufferedReader;
++import java.io.IOException;
++import java.io.InputStreamReader;
++import java.util.StringTokenizer;
++
++public class inf_미로탐색 {
++
++    static int dx[] = {0,1,-1,0};
++    static int dy[] = {-1,0,0,1};
++    static int miro[][];
++    static int count = 0;
++
++    static boolean visited[][];
++    public static void main(String[] args) throws IOException {
++        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
++        StringTokenizer st;
++
++        miro = new int[7][7];
++        visited = new boolean[7][7];
++        for (int i = 0; i < 7; i++) {
++            st = new StringTokenizer(br.readLine());
++            for (int j = 0; j < 7; j++) {
++                miro[i][j] = Integer.parseInt(st.nextToken());
++            }
++        }
++
++        DFS(0,0);
++
++        System.out.println(count);
++
++    }
++
++    private static void DFS(int x, int y) {
++        if(x == 6 && y == 6) {
++            count++;
++            return;
++        }
++
++        visited[x][y] = true;
++
++        for (int i = 0; i < 4; i++) {
++            int nextX = x + dx[i];
++            int nextY = y + dy[i];
++            if(canMove(nextX, nextY)){
++                if(!visited[nextX][nextY]) {
++                    DFS(nextX, nextY);
++                    visited[nextX][nextY] = false;
++                }
++            }
++        }
++    }
++
++    private static boolean canMove(int nextX, int nextY) {
++        return nextX >= 0 && nextY >= 0 && nextY < 7 && nextX < 7 && miro[nextX][nextY] != 1;
++    }
++}
+Index: ../../coding_test/src/백준1906_신입사원.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../coding_test/src/백준1906_신입사원.java b/../../coding_test/src/백준1906_신입사원.java
+new file mode 100644
+--- /dev/null	(date 1705288490155)
++++ b/../../coding_test/src/백준1906_신입사원.java	(date 1705288490155)
+@@ -0,0 +1,59 @@
++import java.io.BufferedReader;
++import java.io.IOException;
++import java.io.InputStreamReader;
++import java.util.Arrays;
++import java.util.StringTokenizer;
++
++public class 백준1906_신입사원 {
++    public static void main(String[] args) throws IOException {
++        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
++
++        int T = Integer.parseInt(br.readLine());
++
++        for (int t = 0; t < T; t++) {
++
++            int N = Integer.parseInt(br.readLine());
++
++            StringTokenizer st;
++            Player player[] = new Player[N];
++            for (int i = 0; i < N; i++) {
++                st = new StringTokenizer(br.readLine());
++                int height = Integer.parseInt(st.nextToken());
++                int weight = Integer.parseInt(st.nextToken());
++                player[i] = new Player(height, weight);
++            }
++
++            Arrays.sort(player);
++
++            int count = 1;
++            int min = player[0].weight;
++            for (int i = 1; i < N; i++) {
++                if (min > player[i].weight) {
++                    count++;
++                    min = player[i].weight;
++                }
++            }
++
++            System.out.println(count);
++        }
++
++    }
++
++
++    private static class Player implements Comparable<Player> {
++        int height;
++        int weight;
++
++
++        public Player(int height, int weight) {
++            this.height = height;
++            this.weight = weight;
++        }
++
++        @Override
++        public int compareTo(Player o) {
++            return this.height > o.height ? 1 : -1;
++        }
++    }
++}
++
+Index: ../../coding_test/src/inf_동전교환_시간초과.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\nimport java.util.StringTokenizer;\n\npublic class inf_동전교환_시간초과 {\n\n    static int N;\n    static int[] coin;\n    static int change;\n    static int min = Integer.MAX_VALUE;\n    public static void main(String[] args) throws IOException {\n        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n        N = Integer.parseInt(br.readLine());\n\n        StringTokenizer st = new StringTokenizer(br.readLine());\n\n        coin = new int[N];\n        for (int i = 0; i < N; i++) {\n            coin[i] = Integer.parseInt(st.nextToken());\n        }\n        change = Integer.parseInt(br.readLine());\n\n        DFS(0,0,0);\n\n        System.out.println(min);\n    }\n\n    private static void DFS(int index, int sum, int count) {\n        if(index == N || sum > change) {\n            return;\n        }\n        if(sum == change) {\n            min = Math.min(min,count);\n            return;\n        }\n\n        DFS(index+1,sum+coin[index],count+1); //현재코인을 선택하고 다음코인으로 넘어간다.\n        DFS(index,sum+coin[index],count+1); //현재 코인을 선택하나 다음코인으로 넘어가지 않는다.\n        DFS(index+1,sum,count);//아무것도 선택하지 않고 다음코인으로 넘어간다.\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../coding_test/src/inf_동전교환_시간초과.java b/../../coding_test/src/inf_동전교환_시간초과.java
+--- a/../../coding_test/src/inf_동전교환_시간초과.java	(revision 7cceae5a8794bdc2f39207331e0315705c8c0ded)
++++ b/../../coding_test/src/inf_동전교환_시간초과.java	(date 1705282109059)
+@@ -1,43 +1,0 @@
+-import java.io.BufferedReader;
+-import java.io.IOException;
+-import java.io.InputStreamReader;
+-import java.util.StringTokenizer;
+-
+-public class inf_동전교환_시간초과 {
+-
+-    static int N;
+-    static int[] coin;
+-    static int change;
+-    static int min = Integer.MAX_VALUE;
+-    public static void main(String[] args) throws IOException {
+-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+-        N = Integer.parseInt(br.readLine());
+-
+-        StringTokenizer st = new StringTokenizer(br.readLine());
+-
+-        coin = new int[N];
+-        for (int i = 0; i < N; i++) {
+-            coin[i] = Integer.parseInt(st.nextToken());
+-        }
+-        change = Integer.parseInt(br.readLine());
+-
+-        DFS(0,0,0);
+-
+-        System.out.println(min);
+-    }
+-
+-    private static void DFS(int index, int sum, int count) {
+-        if(index == N || sum > change) {
+-            return;
+-        }
+-        if(sum == change) {
+-            min = Math.min(min,count);
+-            return;
+-        }
+-
+-        DFS(index+1,sum+coin[index],count+1); //현재코인을 선택하고 다음코인으로 넘어간다.
+-        DFS(index,sum+coin[index],count+1); //현재 코인을 선택하나 다음코인으로 넘어가지 않는다.
+-        DFS(index+1,sum,count);//아무것도 선택하지 않고 다음코인으로 넘어간다.
+-
+-    }
+-}
+Index: ../../coding_test/src/inf_씨름선수.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../coding_test/src/inf_씨름선수.java b/../../coding_test/src/inf_씨름선수.java
+new file mode 100644
+--- /dev/null	(date 1705287648727)
++++ b/../../coding_test/src/inf_씨름선수.java	(date 1705287648727)
+@@ -0,0 +1,53 @@
++import java.io.BufferedReader;
++import java.io.IOException;
++import java.io.InputStreamReader;
++import java.util.Arrays;
++import java.util.StringTokenizer;
++
++public class inf_씨름선수 {
++
++    public static void main(String[] args) throws IOException {
++        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
++        int N = Integer.parseInt(br.readLine());
++
++        StringTokenizer st;
++        Player player[] = new Player[N];
++        for (int i = 0; i < N; i++) {
++            st = new StringTokenizer(br.readLine());
++            int height = Integer.parseInt(st.nextToken());
++            int weight = Integer.parseInt(st.nextToken());
++            player[i] = new Player(height, weight);
++        }
++
++        Arrays.sort(player);
++
++        int count = 1;
++        int max = player[0].weight;
++        for (int i = 1; i < N; i++) {
++                if ( max < player[i].weight) {
++                    count++;
++                    max = player[i].weight;
++                }
++        }
++
++        System.out.println(count);
++
++    }
++
++
++    private static class Player implements Comparable<Player> {
++        int height;
++        int weight;
++
++
++        public Player(int height, int weight) {
++            this.height = height;
++            this.weight = weight;
++        }
++
++        @Override
++        public int compareTo(Player o) {
++            return this.height > o.height ? -1 : 1;
++        }
++    }
++}
+Index: ../../coding_test/src/inf_조합_경우수/inf_조합의_경우수_01_15.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../coding_test/src/inf_조합_경우수/inf_조합의_경우수_01_15.java b/../../coding_test/src/inf_조합_경우수/inf_조합의_경우수_01_15.java
+new file mode 100644
+--- /dev/null	(date 1705283954489)
++++ b/../../coding_test/src/inf_조합_경우수/inf_조합의_경우수_01_15.java	(date 1705283954489)
+@@ -0,0 +1,35 @@
++package inf_조합_경우수;
++
++import java.math.BigInteger;
++import java.util.Arrays;
++import java.util.Scanner;
++
++public class inf_조합의_경우수_01_15 {
++    static BigInteger[][] memory;
++
++    public static void main(String[] args) {
++        Scanner scanner = new Scanner(System.in);
++        int n = scanner.nextInt();
++        int r = scanner.nextInt();
++        memory = new BigInteger[101][101];
++
++        for (int i = 0; i < 101; i++) {
++            for (int j = 0; j < 101; j++) {
++                memory[i][j] = BigInteger.ZERO;
++            }
++        }
++
++        BigInteger combination = combination(n, r);
++        System.out.println(combination);
++
++    }
++
++    private static BigInteger combination(int n, int r) {
++        if (n == r || r == 0)
++            return memory[n][r] = BigInteger.valueOf(1);
++        if (!memory[n][r].equals(BigInteger.ZERO))
++            return memory[n][r];
++
++        return memory[n][r] = combination(n - 1, r - 1).add(combination(n - 1, r));
++    }
++}
+Index: ../../coding_test/src/inf_동전교환_DFS.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\nimport java.util.Arrays;\nimport java.util.Collections;\nimport java.util.StringTokenizer;\n\npublic class inf_동전교환_DFS {\n\n    static int N;\n    static Integer[] coin;\n    static int change;\n    static int min = Integer.MAX_VALUE;\n    public static void main(String[] args) throws IOException {\n        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n        N = Integer.parseInt(br.readLine());\n\n        StringTokenizer st = new StringTokenizer(br.readLine());\n\n        coin = new Integer[N];\n        for (int i = 0; i < N; i++) {\n            coin[i] = Integer.parseInt(st.nextToken());\n        }\n        change = Integer.parseInt(br.readLine());\n\n        Arrays.sort(coin,Collections.reverseOrder());\n        DFS(0,0,0);\n\n        System.out.println(min);\n    }\n\n    private static void DFS(int index, int sum, int count) {\n        if(index == N || sum > change || count > min) {\n            return;\n        }\n        if(sum == change) {\n            min = Math.min(min,count);\n            return;\n        }\n\n        DFS(index+1,sum+coin[index],count+1); //현재코인을 선택하고 다음코인으로 넘어간다.\n        DFS(index,sum+coin[index],count+1); //현재 코인을 선택하나 다음코인으로 넘어가지 않는다.\n        DFS(index+1,sum,count);//아무것도 선택하지 않고 다음코인으로 넘어간다.\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../coding_test/src/inf_동전교환_DFS.java b/../../coding_test/src/inf_동전교환_DFS.java
+--- a/../../coding_test/src/inf_동전교환_DFS.java	(revision 7cceae5a8794bdc2f39207331e0315705c8c0ded)
++++ b/../../coding_test/src/inf_동전교환_DFS.java	(date 1705282109045)
+@@ -1,46 +1,0 @@
+-import java.io.BufferedReader;
+-import java.io.IOException;
+-import java.io.InputStreamReader;
+-import java.util.Arrays;
+-import java.util.Collections;
+-import java.util.StringTokenizer;
+-
+-public class inf_동전교환_DFS {
+-
+-    static int N;
+-    static Integer[] coin;
+-    static int change;
+-    static int min = Integer.MAX_VALUE;
+-    public static void main(String[] args) throws IOException {
+-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+-        N = Integer.parseInt(br.readLine());
+-
+-        StringTokenizer st = new StringTokenizer(br.readLine());
+-
+-        coin = new Integer[N];
+-        for (int i = 0; i < N; i++) {
+-            coin[i] = Integer.parseInt(st.nextToken());
+-        }
+-        change = Integer.parseInt(br.readLine());
+-
+-        Arrays.sort(coin,Collections.reverseOrder());
+-        DFS(0,0,0);
+-
+-        System.out.println(min);
+-    }
+-
+-    private static void DFS(int index, int sum, int count) {
+-        if(index == N || sum > change || count > min) {
+-            return;
+-        }
+-        if(sum == change) {
+-            min = Math.min(min,count);
+-            return;
+-        }
+-
+-        DFS(index+1,sum+coin[index],count+1); //현재코인을 선택하고 다음코인으로 넘어간다.
+-        DFS(index,sum+coin[index],count+1); //현재 코인을 선택하나 다음코인으로 넘어가지 않는다.
+-        DFS(index+1,sum,count);//아무것도 선택하지 않고 다음코인으로 넘어간다.
+-
+-    }
+-}
