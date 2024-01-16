@@ -1,3 +1,5 @@
+package inf_수열추측하기;
+
 import java.util.*;
 
 public class inf_수열_추측하기 {
