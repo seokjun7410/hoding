@@ -1,7 +1,4 @@
 package inf_수열추측하기;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class inf_수열_추측하기_01_16 {
