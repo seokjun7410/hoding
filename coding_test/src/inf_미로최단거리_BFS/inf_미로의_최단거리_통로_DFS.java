@@ -1,3 +1,5 @@
+package inf_미로최단거리_BFS;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,13 +7,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class inf_미로의_최단거리_통로_BFS {
+public class inf_미로의_최단거리_통로_DFS {
 
     static boolean visited[][];
     static int miro[][];
 
     static int dx[] = {0, 1, -1, 0};
     static int dy[] = {-1, 0, 0, 1};
+    static int count = 0;
+    static int minValue = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -27,44 +31,45 @@ public class inf_미로의_최단거리_통로_BFS {
             }
         }
         miro[0][0] = 0;
-        BFS(0, 0);
+        DFS(0, 0);
 
-        int x = miro[6][6];
-        if(x == 0) {
+        int x = minValue;
+        if(x == Integer.MAX_VALUE) {
             System.out.println("-1");
         }else {
             System.out.println(x);
         }
     }
 
-    private static void BFS(int x, int y) {
-        Queue<int[]> queue = new LinkedList<>();
-
-        visited[x][y] = true;
-        int[] ints = {x, y};
-        queue.add(ints);
-
-
-        while (!queue.isEmpty()) {
-            int[] now = queue.poll();
-            int nowX = now[0];
-            int nowY = now[1];
-            visited[nowX][nowY] = true;
-            for (int i = 0; i < 4; i++) {
-                int nextX = now[0] + dx[i];
-                int nextY = now[1] + dy[i];
-
-                if (canMove(nextX, nextY)) {
-                    if (!visited[nextX][nextY]) {
-                        miro[nextX][nextY] = miro[nowX][nowY] + 1;
-                        int[] next = {nextX, nextY};
-                        queue.add(next);
-                    }
-                }
-
-            }
+    private static void DFS(int x, int y) {
+        if(visited[x][y])
+            return;
+        if(x ==6 && y == 6){
+            minValue = Math.min(count,minValue);
+            return;
         }
 
+        visited(x,y);
+
+        for (int i = 0; i < 4; i++) {
+            int nextX = x + dx[i];
+            int nextY = y + dy[i];
+
+            if(canMove(nextX,nextY)) {
+                if(!visited[nextX][nextY]){
+                    count++;
+                    DFS(nextX,nextY);
+                    count--;
+                    visited[nextX][nextY] = false;
+            }
+        }
+    }
+
+
+}
+
+    private static void visited(int x, int y) {
+        visited[x][y] = true;
 
     }
 
