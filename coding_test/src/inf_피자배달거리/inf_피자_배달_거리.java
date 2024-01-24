@@ -1,3 +1,5 @@
+package inf_피자배달거리;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
