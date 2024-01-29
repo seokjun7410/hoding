@@ -1,3 +1,5 @@
+package inf_회의실;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
