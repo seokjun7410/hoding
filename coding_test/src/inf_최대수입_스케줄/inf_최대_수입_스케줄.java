@@ -1,3 +1,5 @@
+package inf_최대수입_스케줄;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
