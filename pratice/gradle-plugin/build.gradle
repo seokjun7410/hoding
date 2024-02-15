@@ -1,0 +1,36 @@
+// 세개의 플러그인이 필요합니다.
+// 1. goorvy : groovy 스크립트를 사용하기 위한 플러그인
+// 2.java-gradle-plugin : 플러그인 개발에 필요한 다양한 구성을 설정합니다
+// 3.maven-publish : 메이븐 저장소(로컬,공용)에 게시하기위해 필요합니다.
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = 'com.gradleplugin' //플러그인이 게시될 때 그룹을 식별하여 게시됩니다.
+version = '0.0.1-SNAPSHOT'
+
+//maven저장소를 사용합니다.
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0' //groovy test framework
+}
+
+//다른 프로젝트에서 플러그인을 참조할 때 사용되는 ID와 구현 클래스를 설정합니다.
+gradlePlugin {
+    plugins {
+        fileDiff {
+            id = 'com.gradleplugin.practice'
+            implementationClass = 'com.gradleplugin.plugins.BasicPlugin'
+        }
+    }
+}
+
+//junit platform기반에서 테스트를 진행합니다.
+test {
+    useJUnitPlatform()
+}
